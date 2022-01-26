@@ -1,6 +1,9 @@
 <template>
   <div>
     <nav class="flex my-4 mx-2 bg-red-400 text-white rounded font-bold">
+      <a class="navbar-logo" href="#">
+        <img src="https://aveonline.co/wp-content/uploads/2020/07/avecolor.png">
+      </a>
       <router-link to="/" class="py-4 px-4">Inicio</router-link>
       <router-link to="/medicinas" class="py-4 px-4">Medicinas</router-link>
       <router-link to="/promociones" class="py-4 px-4">Promociones</router-link>
@@ -23,4 +26,15 @@ export default {
 </script>
 
 <style>
+.navbar-logo {
+  display: inline-block;
+  vertical-align: middle;
+  width: 100px;
+}
+
+.navbar-logo img {
+  display: block;
+  width: 100px;
+  height: 45px;
+}
 </style>

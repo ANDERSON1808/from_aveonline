@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container mx-auto px-6">
     <router-link to="/facturas/crear" class="py-3 px-2 bg-indigo-300 text-white font-bold rounded">
       <font-awesome-icon icon="plus-circle"/>
       Nueva factura
