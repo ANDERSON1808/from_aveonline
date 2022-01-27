@@ -22,8 +22,9 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue'
+import {ref, onMounted} from 'vue'
 import axios from 'axios'
+
 export default {
   setup() {
     let medicamentos = ref([])
@@ -33,12 +34,12 @@ export default {
 
     const getMedicines = () => {
       axios.get(`${process.env.VUE_APP_HOST}/v1/medicamento`)
-        .then(response =>{
-          medicamentos.value = response.data;
-        })
-        .catch((err) =>{
-          console.log(err)
-        });
+          .then(response => {
+            medicamentos.value = response.data;
+          })
+          .catch((err) => {
+            console.log(err)
+          });
     }
 
     return {
@@ -49,7 +50,10 @@ export default {
 </script>
 
 <style>
-  tr > td {
-    border-bottom: 1px solid black;
-  }
+tr > td {
+  border-bottom: 1px solid black;
+}
+table tr {
+  text-align: center;
+}
 </style>

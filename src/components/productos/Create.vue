@@ -17,7 +17,7 @@
                  v-model="producto.ubicacion"/>
         </div>
         <button
-            class="w-full mt-6 text-indigo-50 font-bold bg-indigo-600 py-3 rounded-md hover:bg-indigo-500 transition duration-300"
+            class="w-full mt-6 text-indigo-50 font-bold bg-red-400 py-3 rounded-md hover:bg-indigo-500 transition duration-300"
             @click="save">Guardar
         </button>
       </div>
