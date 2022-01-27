@@ -34,6 +34,7 @@
 import {ref, onMounted} from 'vue'
 import axios from 'axios'
 import Multiselect from '@vueform/multiselect'
+import Swal from "sweetalert2";
 
 export default {
   setup() {
@@ -91,14 +92,31 @@ export default {
       })
       axios.post(`${process.env.VUE_APP_HOST}/v1/factura`, invoice.value)
           .then((response) => {
-            console.log(response)
-            alert("Factura guardada")
-            window.location.href = "/#/facturas";
-          })
-          .catch((err) => {
-            console.log(err)
-            alert("Error al crear factura")
-          });
+            if (response.data.error) {
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: response.data.error,
+              })
+            } else {
+              Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Tu factura ha sido guardada.',
+                showConfirmButton: true,
+                timer: 1500
+              }).then(function () {
+                location.href = "/#/facturas";
+              })
+            }
+          }).catch((err) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Lo sentimos no se guardo!',
+          footer: '' + err
+        })
+      });
     }
 
     const validate = (flag) => {

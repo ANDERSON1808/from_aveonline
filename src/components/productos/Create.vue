@@ -28,6 +28,8 @@
 <script>
 import {ref} from 'vue'
 import axios from 'axios'
+import 'sweetalert2/dist/sweetalert2.min.css';
+import Swal from "sweetalert2";
 
 export default {
   setup() {
@@ -45,13 +47,23 @@ export default {
       axios.post(`${process.env.VUE_APP_HOST}/v1/medicamento`, producto.value)
           .then((response) => {
             console.log(response)
-            alert("Producto guardado")
-            window.ubicacion.href = "/#/medicinas";
-          })
-          .catch((err) => {
-            console.log(err)
-            alert("Error al crear producto")
-          });
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Tu trabajo ha sido guardado.',
+              showConfirmButton: true,
+              timer: 1500
+            }).then(function () {
+              location.href = "/#/medicinas";
+            })
+          }).catch((err) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Lo sentimos no se guardo!',
+          footer: '' + err
+        })
+      });
     }
 
     const validate = (flag) => {

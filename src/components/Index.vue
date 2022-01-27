@@ -48,7 +48,7 @@ export default defineComponent({
   },
   setup() {
     const startDate = ref('2021-01-01')
-    const finishDate = ref('2022-01-26')
+    const finishDate = ref('2022-01-27')
     let dataLabels = ref([])
     let dataValues = ref([])
     const option = ref({});

@@ -20,6 +20,7 @@ import {
     GridComponent,
     TooltipComponent
 } from 'echarts/components'
+import VueSweetalert2 from "vue-sweetalert2";
 
 use([
     CanvasRenderer,
@@ -41,4 +42,5 @@ createApp(App)
     .use(router)
     .component("font-awesome-icon", FontAwesomeIcon)
     .component('v-chart', ECharts)
+    .component('VueSweetalert2', VueSweetalert2)
     .mount('#app')

@@ -34,6 +34,7 @@
 <script>
 import {ref} from 'vue'
 import axios from 'axios'
+import Swal from "sweetalert2";
 
 export default {
   setup() {
@@ -52,18 +53,31 @@ export default {
     const save = () => {
       axios.post(`${process.env.VUE_APP_HOST}/v1/promocion`, promotion.value)
           .then((response) => {
-            console.log(response)
             if (response.data.error) {
-              alert("No puede existir una promoción el mismo rango de fechas")
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: response.data.error,
+              })
             } else {
-              alert("Registro Guardado")
-              window.location.href = "/#/promociones";
+              Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Tu trabajo ha sido guardado.',
+                showConfirmButton: true,
+                timer: 1500
+              }).then(function () {
+                location.href = "/#/promociones";
+              })
             }
-          })
-          .catch((err) => {
-            console.log(err)
-            alert("Error al guardar promocion " + err)
-          });
+          }).catch((err) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Lo sentimos no se guardo!',
+          footer: '' + err
+        })
+      });
     }
 
     const validate = (flag) => {
