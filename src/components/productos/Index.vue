@@ -3,11 +3,11 @@
     <div class="overflow-x-auto">
       <div class="py-3 pl-2">
         <div class="relative max-w-xs">
-          <label for="search" class="sr-only"> Search </label>
-          <input
-            type="text"
-            name="search"
-            class="
+          <form>
+            <label for="search" class="sr-only"> Search </label>
+            <input
+                type="number"
+                class="
               block
               w-full
               p-3
@@ -18,10 +18,13 @@
               focus:border-blue-500 focus:ring-blue-500
               dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400
             "
-            placeholder="Search..."
-          />
+                placeholder="Buscar guia..."
+                v-model="search"
+                @change="getSelectProduct"
+            />
+          </form>
           <div
-            class="
+              class="
               absolute
               inset-y-0
               left-0
@@ -32,17 +35,17 @@
             "
           >
             <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-5 h-5 text-gray-400"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2"
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5 text-gray-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
               />
             </svg>
           </div>
@@ -51,308 +54,144 @@
 
       <div class="p-1.5 w-full inline-block align-middle">
         <div class="overflow-hidden border rounded-lg">
-          <table class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-gray-50">
-              <tr>
-                <th scope="col" class="py-3 pl-4">
-                  <div class="flex items-center h-5">
-                    <input
-                      id="checkbox-all"
-                      type="checkbox"
-                      class="
-                        text-blue-600
-                        border-gray-200
-                        rounded
-                        focus:ring-blue-500
-                      "
-                    />
-                    <label for="checkbox" class="sr-only"> Checkbox </label>
-                  </div>
-                </th>
-                <th
-                  scope="col"
-                  class="
-                    flex
-                    items-center
-                    px-6
-                    py-3
-                    text-xs
-                    font-bold
-                    text-left text-gray-500
-                    uppercase
-                  "
-                >
-                  ID
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="w-4 h-4 text-gray-500"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M17 13l-5 5m0 0l-5-5m5 5V6"
-                    />
-                  </svg>
-                </th>
-                <th
-                  scope="col"
-                  class="
-                    px-6
-                    py-3
-                    text-xs
-                    font-bold
-                    text-left text-gray-500
-                    uppercase
-                  "
-                >
-                  <span class="inline-flex items-center">
-                    Name
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="w-4 h-4"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      stroke-width="2"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M7 11l5-5m0 0l5 5m-5-5v12"
-                      />
-                    </svg>
-                  </span>
-                </th>
-                <th
-                  scope="col"
-                  class="
-                    px-6
-                    py-3
-                    text-xs
-                    font-bold
-                    text-left text-gray-500
-                    uppercase
-                  "
-                >
-                  <span class="inline-flex items-center">
-                    Email
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="w-4 h-4 text-gray-500"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      stroke-width="2"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M17 13l-5 5m0 0l-5-5m5 5V6"
-                      />
-                    </svg>
-                  </span>
-                </th>
-                <th
-                  scope="col"
-                  class="
-                    px-6
-                    py-3
-                    text-xs
-                    font-bold
-                    text-right text-gray-500
-                    uppercase
-                  "
-                >
-                  Edit
-                </th>
-                <th
-                  scope="col"
-                  class="
-                    px-6
-                    py-3
-                    text-xs
-                    font-bold
-                    text-right text-gray-500
-                    uppercase
-                  "
-                >
-                  Delete
-                </th>
-              </tr>
+          <table class="w-full my-5 divide-y divide-gray-200 text-xs">
+            <thead class="bg-gray-300 px-4">
+            <tr>
+              <th class="py-3">codigo</th>
+              <th class="py-3">destinatario</th>
+              <th class="py-3">telefono</th>
+              <th class="py-3">direccion</th>
+              <th class="py-3">estado</th>
+              <th class="py-3">origen</th>
+              <th class="py-3">destino</th>
+              <th class="py-3">fechaentrega</th>
+            </tr>
             </thead>
-            <tbody class="divide-y divide-gray-200">
-              <tr>
-                <td class="py-3 pl-4">
-                  <div class="flex items-center h-5">
-                    <input
-                      type="checkbox"
-                      class="
-                        text-blue-600
-                        border-gray-200
-                        rounded
-                        focus:ring-blue-500
-                      "
-                    />
-                    <label for="checkbox" class="sr-only"> Checkbox </label>
-                  </div>
-                </td>
-                <td
-                  class="
-                    px-6
-                    py-4
-                    text-sm
-                    font-medium
-                    text-gray-800
-                    whitespace-nowrap
-                  "
-                >
-                  1
-                </td>
-                <td class="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                  Jone Doe
-                </td>
-                <td class="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                  jonne62@gmail.com
-                </td>
-                <td
-                  class="
-                    px-6
-                    py-4
-                    text-sm
-                    font-medium
-                    text-right
-                    whitespace-nowrap
-                  "
-                >
-                  <a class="text-green-500 hover:text-green-700" href="#">
-                    Edit
-                  </a>
-                </td>
-                <td
-                  class="
-                    px-6
-                    py-4
-                    text-sm
-                    font-medium
-                    text-right
-                    whitespace-nowrap
-                  "
-                >
-                  <a class="text-red-500 hover:text-red-700" href="#">
-                    Delete
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td class="py-3 pl-4">
-                  <div class="flex items-center h-5">
-                    <input
-                      type="checkbox"
-                      class="
-                        text-blue-600
-                        border-gray-200
-                        rounded
-                        focus:ring-blue-500
-                      "
-                    />
-                    <label for="checkbox" class="sr-only"> Checkbox </label>
-                  </div>
-                </td>
-                <td
-                  class="
-                    px-6
-                    py-4
-                    text-sm
-                    font-medium
-                    text-gray-800
-                    whitespace-nowrap
-                  "
-                >
-                  1
-                </td>
-                <td class="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                  Jone Doe
-                </td>
-                <td class="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                  jonne62@gmail.com
-                </td>
-                <td
-                  class="
-                    px-6
-                    py-4
-                    text-sm
-                    font-medium
-                    text-right
-                    whitespace-nowrap
-                  "
-                >
-                  <a class="text-green-500 hover:text-green-700" href="#">
-                    Edit
-                  </a>
-                </td>
-                <td
-                  class="
-                    px-6
-                    py-4
-                    text-sm
-                    font-medium
-                    text-right
-                    whitespace-nowrap
-                  "
-                >
-                  <a class="text-red-500 hover:text-red-700" href="#">
-                    Delete
-                  </a>
-                </td>
-              </tr>
+            <tbody class="text-center">
+            <tr class="cursor-pointer" v-for="item in productos" v-bind:key="item.dsconsec"
+                @click.stop="rutaDigitalizada(item.rutadigitalizada)">
+              <td class="py-4">{{ item.dsconsec }}</td>
+              <td class="py-4">{{ item.destinatario }}</td>
+              <td class="py-4">{{ item.telefono }}</td>
+              <td class="py-4">{{ item.direccion }}</td>
+              <td class="py-4">{{ item.estado }}</td>
+              <td class="py-4">{{ item.origen }}</td>
+              <td class="py-4">{{ item.destino }}</td>
+              <td class="py-4">{{ item.dsfechaentrega }}</td>
+            </tr>
             </tbody>
           </table>
         </div>
       </div>
     </div>
   </div>
+
+  <div v-if="loade" class="loader">
+    <img src="https://cdn.dribbble.com/users/1299339/screenshots/11116681/media/79bf1ac602445860e4a44bcd4bf80704.gif"
+         alt="">
+  </div>
 </template>
 
 <script>
-import { ref, onMounted } from "vue";
+import {ref, onMounted, defineComponent} from "vue";
 import axios from "axios";
+import Seal from "sweetalert2";
 
-export default {
+export default defineComponent({
+  components: {},
   setup() {
     let productos = ref([]);
+    let search = ref(Number);
+    let loade = ref(false)
+
+    const getMedicines = async (obj) => {
+      loade.value = true;
+      axios.get(`https://aveonline.co/api/nal/v1.0/estado_guia.php?guia=` + obj)
+          .then((res) => {
+            if (res.data.type_error === "0") {
+              productos.value = res.data.response.guias;
+            } else {
+              Seal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Lo sentimos algo paso!',
+                footer: 'codigo error: ' + res.data.type_error
+              })
+            }
+            loade.value = false;
+          })
+          .catch((err) => {
+            Seal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Lo sentimos algo paso!',
+              footer: +'codigo error: ' + err
+            })
+          });
+    };
+
+    const getSelectProduct = async () => {
+      console.log('v',search.value)
+      if (search.value === "" || search.value == null) {
+        await Seal.fire({
+          icon: 'warning',
+          title: 'Oops...',
+          text: 'Falta informacion de guia!',
+        })
+      }else {
+        if (!Number.isInteger(search.value)) {
+          await Seal.fire({
+            icon: 'warning',
+            title: 'Oops...',
+            text: 'Numero de guia incorrecto',
+          })
+        }else {
+          await getMedicines(search.value)
+        }
+      }
+    }
+
+    const rutaDigitalizada = async (url) => {
+      window.open(url, '_blank')
+    }
+
     onMounted(() => {
       getMedicines();
     });
-
-    const getMedicines = () => {
-      axios
-        .get(
-          `https://aveonline.co/api/nal/v1.0/estado_guia.php?guia=764100140016`
-        )
-        .then((res) => {
-          productos.value = res.data.response.guias;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
-
     return {
       productos,
+      getSelectProduct,
+      search,
+      loade,
+      rutaDigitalizada,
     };
   },
-};
+});
 </script>
 
 <style>
 tr > td {
   border-bottom: 1px solid black;
 }
+
 table tr {
   text-align: center;
+}
+</style>
+<style>
+.loader {
+  position: fixed;
+  left: 450px;
+  top: 300px;
+  width: 25%;
+  height: 25%;
+  z-index: 9999;
+  background-color: #ffffffcf;
+}
+
+.loader img {
+  position: center;
+  left: 20%;
+  top: 20%;
 }
 </style>
